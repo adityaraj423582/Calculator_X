@@ -5,17 +5,17 @@ plugins {
 }
 
 android {
-    // TRICK: Keep this as 'com.example' so you don't have to move/rename your files
+    // INTERNAL ID: Matches your folders so you don't have to move files
     namespace = "com.example.calculatorx"
     compileSdk = 36
 
     defaultConfig {
-        // REAL ID: This is what Google sees. It fixes the "Restricted Package" error.
+        // GOOGLE ID: This is what the Play Store sees
         applicationId = "com.adityaraj.calculator"
 
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
+        versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -23,9 +23,9 @@ android {
 
     buildTypes {
         release {
-            // We enabled this to make the app smaller, BUT we added safety rules below
-            isMinifyEnabled = true
-            isShrinkResources = true
+            // CRITICAL FIX: Turned OFF to stop the crash
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -33,7 +33,7 @@ android {
         }
     }
 
-    // SAFETY NET: This block prevents the build from failing on minor warnings
+    // Safety block to ignore minor errors
     lint {
         checkReleaseBuilds = false
         abortOnError = false
@@ -61,9 +61,11 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
-    // --- CRITICAL LIBRARIES ---
+    // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.5")
+    // Icons
     implementation("androidx.compose.material:material-icons-extended:1.7.6")
+    // Math Engine
     implementation("net.objecthunter:exp4j:0.4.8")
 
     testImplementation(libs.junit)
