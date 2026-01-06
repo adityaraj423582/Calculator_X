@@ -15,6 +15,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
 // IMPORTS: If any of these are red, hover over them and press Alt+Enter to import
+import com.example.calculatorx.navigation.Screen
 import com.example.calculatorx.ui.ConverterScreen
 import com.example.calculatorx.ui.FinanceScreen
 import com.example.calculatorx.ui.theme.CalculatorScreen
